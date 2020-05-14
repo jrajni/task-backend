@@ -34,11 +34,13 @@ router.post('/login', async (req, res) => {
     //    check if email exist
     const user = await User.findOne({ email: req.body.email })
     if (!user) return res.status(400).send("Email doesn't Exist")
-
     const validPassword = bcrypt.compare(req.body.password, user.password)
     if (!validPassword) return res.status(400).send("invalid password")
     // create and assign token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET,
+    const token = jwt.sign({ _id: user._id },
+        process.env.TOKEN_SECRET
+
+        ,
         {
             expiresIn: '24h'
         })

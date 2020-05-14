@@ -5,13 +5,14 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 // connect to db
 dotenv.config();
-mongoose.connect(process.env.DB_CONNECT, { useUnifiedTopology: true, useNewUrlParser: true }, () => {
-    console.log("connected to db")
-})
+mongoose.connect(
+    process.env.DB_CONNECT
+    , { useUnifiedTopology: true, useNewUrlParser: true }, () => {
+        console.log("connected to db")
+    })
 // Import Router
 const authRouter = require('./routes/auth')
 const taskRouter = require('./routes/task')
-
 
 // Route Middleware
 app.use(cors())
